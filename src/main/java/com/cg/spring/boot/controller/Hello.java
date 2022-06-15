@@ -14,6 +14,8 @@ public class Hello {
 		return "Hello world!";
 	}
 
+//	http://localhost:9999/hi
+
 	@GetMapping("/hi")
 	public String hi() {
 		System.out.println("hi");
