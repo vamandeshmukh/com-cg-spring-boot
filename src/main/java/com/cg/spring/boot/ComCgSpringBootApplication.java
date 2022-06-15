@@ -7,8 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ComCgSpringBootApplication {
 
 	public static void main(String[] args) {
+
 		System.out.println("Start");
+
 		SpringApplication.run(ComCgSpringBootApplication.class, args);
+
+		System.out.println("End");
 	}
 
 }
