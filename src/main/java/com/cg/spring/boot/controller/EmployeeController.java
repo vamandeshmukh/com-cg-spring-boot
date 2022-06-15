@@ -1,5 +1,7 @@
 package com.cg.spring.boot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,4 +27,26 @@ public class EmployeeController {
 		return emp;
 	}
 
+	@GetMapping("/get-all-emps")
+	public List<Employee> getAllEmps() {
+		List<Employee> eli = empService.getAllEmployees();
+		System.out.println(eli);
+		return eli;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
