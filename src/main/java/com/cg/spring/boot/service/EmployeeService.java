@@ -25,7 +25,12 @@ public class EmployeeService {
 
 	public Employee getEmployeeById(int eid) {
 		Employee emp = null;
-		// code
+		for (Employee e : empList) {
+			if (e.getEid() == eid) {
+				emp = e;
+			}
+		}
+		System.out.println(emp.toString());
 		return emp;
 	}
 
@@ -35,7 +40,24 @@ public class EmployeeService {
 	}
 
 	public Employee updateEmployee(Employee employee) {
-		// code
+		for (Employee e : empList) {
+			if (e.getEid() == employee.getEid()) {
+				empList.set(empList.indexOf(e), employee);
+			}
+		}
+		return employee;
+	}
+
+	public Employee deleteEmployee(int eid) {
+		Employee emp = null;
+		for (Employee e : empList) {
+			if (e.getEid() == eid) {
+				emp = e;
+			}
+		}
+		empList.remove(emp);
+		System.out.println("Employee deleted successfully.");
+		return emp;
 	}
 
 }
