@@ -35,6 +35,15 @@ public class EmployeeController {
 		return empService.getEmployeeById(eid);
 	}
 
+	// http://localhost:9999/get-emp-by-name/{firstName}
+	@GetMapping("/get-emp-by-name/{firstName}")
+	public Employee getEmpByName(@PathVariable(name = "firstName") String firstName) {
+		System.out.println(firstName);
+		// please write code here and in service class
+		// https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
+		return null;
+	}
+
 	// http://localhost:9999/add-emp
 	@PostMapping("/add-emp")
 	public Employee addEmp(@RequestBody Employee employee) {

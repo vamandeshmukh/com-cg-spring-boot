@@ -1,6 +1,7 @@
 package com.cg.spring.boot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,10 @@ public class EmployeeService {
 	}
 
 	public Employee getEmployeeById(int eid) {
-		return null;
+		Optional<Employee> empOptional = empRepository.findById(eid);
+		Employee emp = empOptional.get();
+		System.out.println(emp.toString());
+		return emp;
 	}
 
 	public Employee addEmployee(Employee employee) {
@@ -28,11 +32,13 @@ public class EmployeeService {
 	}
 
 	public Employee updateEmployee(Employee employee) {
-		return null;
+		return empRepository.save(employee);
 	}
 
 	public Employee deleteEmployee(int eid) {
-		return null;
+		Employee empToDelete = this.getEmployeeById(eid);
+		empRepository.delete(empToDelete);
+		return empToDelete;
 	}
 
 }
