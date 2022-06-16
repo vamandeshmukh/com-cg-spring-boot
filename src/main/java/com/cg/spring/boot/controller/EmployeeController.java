@@ -37,11 +37,11 @@ public class EmployeeController {
 
 	// http://localhost:9999/get-emp-by-name/{firstName}
 	@GetMapping("/get-emp-by-name/{firstName}")
-	public Employee getEmpByName(@PathVariable(name = "firstName") String firstName) {
+	public List<Employee> getEmpByName(@PathVariable(name = "firstName") String firstName) {
 		System.out.println(firstName);
 		// please write code here and in service class
 		// https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
-		return null;
+		return empService.getEmployeeByFirstName(firstName);
 	}
 
 	// http://localhost:9999/add-emp

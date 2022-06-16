@@ -3,6 +3,8 @@ package com.cg.spring.boot.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,27 +17,37 @@ public class EmployeeService {
 	@Autowired
 	EmployeeRepository empRepository;
 
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+
 	public List<Employee> getAllEmployees() {
+		LOG.info("getAllEmployees");
 		return empRepository.findAll();
 	}
 
 	public Employee getEmployeeById(int eid) {
 		Optional<Employee> empOptional = empRepository.findById(eid);
 		Employee emp = empOptional.get();
-		System.out.println(emp.toString());
+		LOG.info(emp.toString());
 		return emp;
 	}
 
+	public List<Employee> getEmployeeByFirstName(String firstName) {
+		LOG.info(firstName);
+		return empRepository.findByFirstName(firstName);
+	}
+
 	public Employee addEmployee(Employee employee) {
-		System.out.println(employee.toString());
+		LOG.info(employee.toString());
 		return empRepository.save(employee);
 	}
 
 	public Employee updateEmployee(Employee employee) {
+		LOG.info(employee.toString());
 		return empRepository.save(employee);
 	}
 
 	public Employee deleteEmployee(int eid) {
+		LOG.info(Integer.valueOf(eid).toString());
 		Employee empToDelete = this.getEmployeeById(eid);
 		empRepository.delete(empToDelete);
 		return empToDelete;
