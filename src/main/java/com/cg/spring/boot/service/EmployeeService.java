@@ -25,8 +25,7 @@ public class EmployeeService {
 
 	public Employee getEmployeeById(int eid) {
 		Employee emp = null;
-		// code to get emp object from empList
-		System.out.println(emp.toString());
+		// code
 		return emp;
 	}
 
@@ -34,6 +33,11 @@ public class EmployeeService {
 		empList.add(employee);
 		return employee;
 	}
+
+	public Employee updateEmployee(Employee employee) {
+		// code
+	}
+
 }
 
 //package com.cg.spring.boot.service;
