@@ -10,19 +10,57 @@ import com.cg.spring.boot.model.Employee;
 @Service
 public class EmployeeService {
 
-	public Employee getEmployeeById(int eid) {
+	List<Employee> empList = new ArrayList<>();
 
-		Employee emp = new Employee(eid, "Sonu", 60000);
+	// non static block
+	{
+		empList.add(new Employee(101, "Sonu", 50000));
+		empList.add(new Employee(102, "Monu", 75000));
+		empList.add(new Employee(103, "Tonu", 60000));
+	}
+
+	public List<Employee> getAllEmployees() {
+		return empList;
+	}
+
+	public Employee getEmployeeById(int eid) {
+		Employee emp = null;
+		// code to get emp object from empList
 		System.out.println(emp.toString());
 		return emp;
 	}
 
-	public List<Employee> getAllEmployees() {
-		List<Employee> empList = new ArrayList<>();
-		empList.add(new Employee(101, "Sonu", 50000));
-		empList.add(new Employee(102, "Monu", 75000));
-		empList.add(new Employee(103, "Tonu", 60000));
-		return empList;
+	public Employee addEmployee(Employee employee) {
+		empList.add(employee);
+		return employee;
 	}
-
 }
+
+//package com.cg.spring.boot.service;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import org.springframework.stereotype.Service;
+//
+//import com.cg.spring.boot.model.Employee;
+//
+//@Service
+//public class EmployeeService {
+//
+//	public Employee getEmployeeById(int eid) {
+//
+//		Employee emp = new Employee(eid, "Sonu", 60000);
+//		System.out.println(emp.toString());
+//		return emp;
+//	}
+//
+//	public List<Employee> getAllEmployees() {
+//		List<Employee> empList = new ArrayList<>();
+//		empList.add(new Employee(101, "Sonu", 50000));
+//		empList.add(new Employee(102, "Monu", 75000));
+//		empList.add(new Employee(103, "Tonu", 60000));
+//		return empList;
+//	}
+//
+//}

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.spring.boot.model.Employee;
@@ -16,6 +18,14 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService empService;
 
+	// http://localhost:9999/get-all-emps
+	@GetMapping("/get-all-emps")
+	public List<Employee> getAllEmps() {
+		List<Employee> eli = empService.getAllEmployees();
+		System.out.println(eli);
+		return eli;
+	}
+
 	// http://localhost:9999/get-emp-by-id/{eid}
 	@GetMapping("/get-emp-by-id/{eid}")
 	public Employee getEmpById(@PathVariable(name = "eid") int eid) {
@@ -23,12 +33,11 @@ public class EmployeeController {
 		return empService.getEmployeeById(eid);
 	}
 
-	// http://localhost:9999/get-all-emps
-	@GetMapping("/get-all-emps")
-	public List<Employee> getAllEmps() {
-		List<Employee> eli = empService.getAllEmployees();
-		System.out.println(eli);
-		return eli;
+	// http://localhost:9999/add-emp
+	@PostMapping("/add-emp")
+	public Employee addEmp(@RequestBody Employee employee) {
+		System.out.println(employee.toString());
+		return empService.addEmployee(employee);
 	}
 
 }
