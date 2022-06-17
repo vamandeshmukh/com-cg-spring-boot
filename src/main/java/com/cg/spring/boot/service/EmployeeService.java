@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.spring.boot.exception.EmployeeNotFoundException;
 import com.cg.spring.boot.model.Employee;
 import com.cg.spring.boot.repository.EmployeeRepository;
 
@@ -26,9 +27,16 @@ public class EmployeeService {
 
 	public Employee getEmployeeById(int eid) {
 		Optional<Employee> empOptional = empRepository.findById(eid);
-		Employee emp = empOptional.get();
-		LOG.info(emp.toString());
-		return emp;
+		Employee emp = null;
+		if (empOptional.isPresent()) {
+			emp = empOptional.get();
+			LOG.info(emp.toString());
+			return emp;
+		} else {
+			String errorMessage = "Employee with eid " + eid + " does not exist.";
+			LOG.error(errorMessage);
+			throw new EmployeeNotFoundException(errorMessage);
+		}
 	}
 
 	public List<Employee> getEmployeeByFirstName(String firstName) {
