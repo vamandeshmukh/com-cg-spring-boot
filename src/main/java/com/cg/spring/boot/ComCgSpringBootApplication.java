@@ -1,5 +1,7 @@
 package com.cg.spring.boot;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,13 +16,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ComCgSpringBootApplication {
 
+	private static final Logger LOG = LoggerFactory.getLogger(ComCgSpringBootApplication.class);
+
 	public static void main(String[] args) {
 
-		System.out.println("Start");
-
+		LOG.info("Starting...");
 		SpringApplication.run(ComCgSpringBootApplication.class, args);
+		LOG.info("Started...");
 
-		System.out.println("End");
 	}
 
 }
