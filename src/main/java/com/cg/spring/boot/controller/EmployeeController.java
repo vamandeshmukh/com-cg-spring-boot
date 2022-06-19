@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.spring.boot.model.Employee;
 import com.cg.spring.boot.service.EmployeeService;
 
 @RestController
+@RequestMapping("/emp")
 public class EmployeeController {
 
 	// Use ResponseEntity to all the methods in controller classes.
@@ -28,16 +30,18 @@ public class EmployeeController {
 
 	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
-	// http://localhost:9999/get-all-emps
+	// http://localhost:9999/emp/get-all-emps
 	@GetMapping("/get-all-emps")
-	public List<Employee> getAllEmps() {
+	public ResponseEntity<List<Employee>> getAllEmps() {
 		List<Employee> empList = empService.getAllEmployees();
 		for (Employee empTemp : empList)
 			LOG.info(empTemp.toString());
-		return empList;
+		HttpStatus status = HttpStatus.OK;
+		ResponseEntity<List<Employee>> response = new ResponseEntity<>(empList, status);
+		return response;
 	}
 
-	// http://localhost:9999/get-emp-by-id/{eid}
+	// http://localhost:9999/emp/get-emp-by-id/{eid}
 	@GetMapping("/get-emp-by-id/{eid}")
 	public ResponseEntity<Employee> getEmpById(@PathVariable(name = "eid") int eid) {
 		LOG.info(Integer.toString(eid));
@@ -47,32 +51,41 @@ public class EmployeeController {
 		return response;
 	}
 
-	// http://localhost:9999/get-emp-by-name/{firstName}
+	// http://localhost:9999/emp/get-emp-by-name/{firstName}
 	@GetMapping("/get-emp-by-name/{firstName}")
-	public List<Employee> getEmpByName(@PathVariable(name = "firstName") String firstName) {
+	public ResponseEntity<List<Employee>> getEmpByName(@PathVariable(name = "firstName") String firstName) {
 		LOG.info(firstName);
-		return empService.getEmployeeByFirstName(firstName);
+		HttpStatus status = HttpStatus.OK;
+		ResponseEntity<List<Employee>> response = new ResponseEntity<>(empService.getEmployeeByFirstName(firstName),
+				status);
+		return response;
 	}
 
-	// http://localhost:9999/add-emp
+	// http://localhost:9999/emp/add-emp
 	@PostMapping("/add-emp")
-	public Employee addEmp(@RequestBody Employee employee) {
+	public ResponseEntity<Employee> addEmp(@RequestBody Employee employee) {
 		LOG.info(employee.toString());
-		return empService.addEmployee(employee);
+		HttpStatus status = HttpStatus.OK;
+		ResponseEntity<Employee> response = new ResponseEntity<>(empService.addEmployee(employee), status);
+		return response;
 	}
 
-	// http://localhost:9999/update-emp
+	// http://localhost:9999/emp/update-emp
 	@PutMapping("/update-emp")
-	public Employee updateEmp(@RequestBody Employee employee) {
+	public ResponseEntity<Employee> updateEmp(@RequestBody Employee employee) {
 		LOG.info(employee.toString());
-		return empService.updateEmployee(employee);
+		HttpStatus status = HttpStatus.OK;
+		ResponseEntity<Employee> response = new ResponseEntity<>(empService.updateEmployee(employee), status);
+		return response;
 	}
 
-	// http://localhost:9999/delete-emp
+	// http://localhost:9999/emp/delete-emp
 	@DeleteMapping("/delete-emp/{eid}")
-	public Employee deleteEmp(@PathVariable(name = "eid") int eid) {
+	public ResponseEntity<Employee> deleteEmp(@PathVariable(name = "eid") int eid) {
 		LOG.info(Integer.toString(eid));
-		return empService.deleteEmployee(eid);
+		HttpStatus status = HttpStatus.OK;
+		ResponseEntity<Employee> response = new ResponseEntity<>(empService.deleteEmployee(eid), status);
+		return response;
 	}
 }
 

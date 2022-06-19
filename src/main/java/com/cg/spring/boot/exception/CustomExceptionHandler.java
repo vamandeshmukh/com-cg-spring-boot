@@ -23,6 +23,16 @@ public class CustomExceptionHandler {
 		return response;
 	}
 
+	@ExceptionHandler(DepartmentNotFoundException.class)
+	public ResponseEntity<Object> handleDepartmentNotFoundException(DepartmentNotFoundException e) {
+		String exceptionMessage = e.getMessage();
+		LOG.error(exceptionMessage);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Messsage", exceptionMessage);
+		ResponseEntity<Object> response = new ResponseEntity<>(null, headers, HttpStatus.NOT_FOUND);
+		return response;
+	}
+
 	// declare other exception handlers
 
 }
