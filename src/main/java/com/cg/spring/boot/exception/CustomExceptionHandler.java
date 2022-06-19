@@ -19,10 +19,10 @@ public class CustomExceptionHandler {
 		LOG.error(exceptionMessage);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Messsage", exceptionMessage);
-
 		ResponseEntity<Object> response = new ResponseEntity<>(null, headers, HttpStatus.NOT_FOUND);
-
 		return response;
 	}
+
+	// declare other exception handlers
 
 }

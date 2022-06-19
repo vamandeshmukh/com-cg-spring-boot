@@ -41,7 +41,11 @@ public class EmployeeService {
 
 	public List<Employee> getEmployeeByFirstName(String firstName) {
 		LOG.info(firstName);
-		return empRepository.findByFirstName(firstName);
+		List<Employee> empList = empRepository.findByFirstNameIgnoreCase(firstName);
+		if (null != empList)
+			return empList;
+		String errorMessage = "Employee with firstName " + firstName + " does not exist.";
+		throw new EmployeeNotFoundException(errorMessage);
 	}
 
 	public Employee addEmployee(Employee employee) {
@@ -51,11 +55,12 @@ public class EmployeeService {
 
 	public Employee updateEmployee(Employee employee) {
 		LOG.info(employee.toString());
+		this.getEmployeeById(employee.getEid());
 		return empRepository.save(employee);
 	}
 
 	public Employee deleteEmployee(int eid) {
-		LOG.info(Integer.valueOf(eid).toString());
+		LOG.info(Integer.toString(eid));
 		Employee empToDelete = this.getEmployeeById(eid);
 		empRepository.delete(empToDelete);
 		return empToDelete;

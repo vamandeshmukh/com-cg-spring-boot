@@ -16,14 +16,20 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 //  - save(); - insert 
 //	- save(): - update 
 //	- delete(); - delete 
+//	you need to write methods for other CRUD operations 
 
-//	you need to write methods for other operations 
-//	check this documentation - 
+//  check this documentation -
 //	https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
 
-//	sytax - 
+//	syntax - 
 //	public abstract List<ClassName> findByFieldName(that field type and name);
 
 	public abstract List<Employee> findByFirstName(String firstName);
+
+	public abstract List<Employee> findByFirstNameIgnoreCase(String firstName);
+
+	public abstract List<Employee> findBySalary(double salary);
+
+	public abstract List<Employee> findBySalaryGreaterThan(double salary);
 
 }
