@@ -59,7 +59,7 @@ public class EmployeeService {
 		return empRepository.save(employee);
 	}
 
-	public Employee deleteEmployee(int eid) {
+	public Employee deleteEmployee(int eid) { // 1 2 3 4 5   ,    6 
 		LOG.info(Integer.toString(eid));
 		Employee empToDelete = this.getEmployeeById(eid);
 		empRepository.delete(empToDelete);

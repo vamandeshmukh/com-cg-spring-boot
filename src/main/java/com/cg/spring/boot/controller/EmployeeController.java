@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,8 @@ import com.cg.spring.boot.service.EmployeeService;
 
 @RestController
 @RequestMapping("/emp")
+@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
 
 	// Use ResponseEntity to all the methods in controller classes.
@@ -61,11 +64,22 @@ public class EmployeeController {
 		return response;
 	}
 
+
+// 	add new employee object - 
+//	{
+//		  "firstName": "Pooja",
+//		  "salary": 90000,
+//		  "department": {
+//		    "did": 6
+//		  }
+//		}
+	
+	
 	// http://localhost:9999/emp/add-emp
 	@PostMapping("/add-emp")
 	public ResponseEntity<Employee> addEmp(@RequestBody Employee employee) {
 		LOG.info(employee.toString());
-		HttpStatus status = HttpStatus.OK;
+		HttpStatus status = HttpStatus.CREATED; // 201
 		ResponseEntity<Employee> response = new ResponseEntity<>(empService.addEmployee(employee), status);
 		return response;
 	}
@@ -74,7 +88,7 @@ public class EmployeeController {
 	@PutMapping("/update-emp")
 	public ResponseEntity<Employee> updateEmp(@RequestBody Employee employee) {
 		LOG.info(employee.toString());
-		HttpStatus status = HttpStatus.OK;
+		HttpStatus status = HttpStatus.CREATED; // 201
 		ResponseEntity<Employee> response = new ResponseEntity<>(empService.updateEmployee(employee), status);
 		return response;
 	}
