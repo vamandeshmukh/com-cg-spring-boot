@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.spring.boot.exception.EmployeeNotFoundException;
 import com.cg.spring.boot.model.Employee;
+import com.cg.spring.boot.repository.DepartmentRepository;
 import com.cg.spring.boot.repository.EmployeeRepository;
 
 @Service
@@ -17,6 +18,9 @@ public class EmployeeService {
 
 	@Autowired
 	EmployeeRepository empRepository;
+
+	@Autowired
+	DepartmentRepository departmentRepository;
 
 	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
@@ -50,6 +54,8 @@ public class EmployeeService {
 
 	public Employee addEmployee(Employee employee) {
 		LOG.info(employee.toString());
+		if (employee.getDepartment() != null)
+			departmentRepository.findById(employee.getDepartment().getDid());
 		return empRepository.save(employee);
 	}
 
@@ -59,7 +65,7 @@ public class EmployeeService {
 		return empRepository.save(employee);
 	}
 
-	public Employee deleteEmployee(int eid) { // 1 2 3 4 5   ,    6 
+	public Employee deleteEmployee(int eid) { // 1 2 3 4 5 , 6
 		LOG.info(Integer.toString(eid));
 		Employee empToDelete = this.getEmployeeById(eid);
 		empRepository.delete(empToDelete);
