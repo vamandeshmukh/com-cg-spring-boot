@@ -20,7 +20,10 @@ public class EmployeeService {
 	EmployeeRepository empRepository;
 
 	@Autowired
-	DepartmentRepository departmentRepository;
+	DepartmentRepository depRepository;
+
+	@Autowired
+	DepartmentService depService;
 
 	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
@@ -55,7 +58,7 @@ public class EmployeeService {
 	public Employee addEmployee(Employee employee) {
 		LOG.info(employee.toString());
 		if (employee.getDepartment() != null)
-			departmentRepository.findById(employee.getDepartment().getDid());
+			depService.getDepartmentById(employee.getDepartment().getDid());
 		return empRepository.save(employee);
 	}
 
