@@ -3,6 +3,7 @@ package com.cg.spring.boot;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,7 @@ public class EmployeeControllerTests {
 	}
 
 	@Test
+	@Disabled
 	public void testGetEmpById2() {
 		assertNotEquals(3, empController.getEmpById(4));
 	}

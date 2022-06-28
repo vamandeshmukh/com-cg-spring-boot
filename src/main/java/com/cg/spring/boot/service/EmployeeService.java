@@ -32,8 +32,9 @@ public class EmployeeService {
 		return empRepository.findAll();
 	}
 
-	public Employee getEmployeeById(int eid) {
+	public Employee getEmployeeById(int eid) { // 2
 		Optional<Employee> empOptional = empRepository.findById(eid);
+
 		Employee emp = null;
 		if (empOptional.isPresent()) {
 			emp = empOptional.get();
@@ -43,6 +44,7 @@ public class EmployeeService {
 			String errorMessage = "Employee with eid " + eid + " does not exist.";
 			LOG.error(errorMessage);
 			throw new EmployeeNotFoundException(errorMessage);
+//			throw new EmployeeNotFoundException();
 		}
 	}
 

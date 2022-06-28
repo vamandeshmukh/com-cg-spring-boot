@@ -24,7 +24,9 @@ public class EmployeeControllerTestsWithMockito {
 
 	@Test
 	public void testGetEmpById() {
+
 		when(empService.getEmployeeById(3)).thenReturn(new Employee(3, "Pooja", 50000));
+
 		assertEquals(3, empController.getEmpById(3).getBody().getEid());
 	}
 
