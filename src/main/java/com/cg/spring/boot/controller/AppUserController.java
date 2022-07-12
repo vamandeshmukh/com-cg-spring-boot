@@ -22,7 +22,7 @@ import com.cg.spring.boot.service.AppUserService;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class AppUserController {
 
 	private final Logger LOG = LoggerFactory.getLogger(this.getClass());

@@ -64,7 +64,6 @@ public class EmployeeController {
 		return response;
 	}
 
-
 // 	add new employee object - 
 //	{
 //		  "firstName": "Pooja",
@@ -73,8 +72,7 @@ public class EmployeeController {
 //		    "did": 6
 //		  }
 //		}
-	
-	
+
 	// http://localhost:9999/emp/add-emp
 	@PostMapping("/add-emp")
 	public ResponseEntity<Employee> addEmp(@RequestBody Employee employee) {
