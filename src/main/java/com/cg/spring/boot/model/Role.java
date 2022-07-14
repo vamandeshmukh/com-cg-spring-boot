@@ -2,6 +2,6 @@ package com.cg.spring.boot.model;
 
 public enum Role {
 
-	ADMIN, EMPLOYEE, USER
+	ADMIN, EMPLOYEE, MANAGER
 
 }
