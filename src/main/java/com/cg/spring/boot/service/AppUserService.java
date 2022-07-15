@@ -73,7 +73,7 @@ public class AppUserService implements IAppUserService {
 	@Override
 	public String logoutUser(String userName) {
 		if (loggedInUser.getUserName().equals(userName)) {
-
+			LOG.info(userName + " logged out successfully.");
 			loggedInUser = null;
 			return userName;
 		} else {

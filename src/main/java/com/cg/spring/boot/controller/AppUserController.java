@@ -52,7 +52,7 @@ public class AppUserController {
 
 	@GetMapping("/logout/{user}")
 	public ResponseEntity<String> logout(@PathVariable(name = "user") String userName) {
-		LOG.info(userName);
+//		LOG.info(userName);
 		return new ResponseEntity<String>(appUserService.logoutUser(userName), HttpStatus.OK);
 	}
 
